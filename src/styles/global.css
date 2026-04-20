@@ -1,6 +1,11 @@
+/* stylelint-disable at-rule-no-unknown */
 /* =====================
    Base
    ===================== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   padding: 0;
@@ -117,6 +122,8 @@ body {
   min-height: 100vh;
   background-color: #0f172a;
   animation: app-fade-in 1.5s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes app-fade-in {
@@ -128,9 +135,9 @@ body {
    Glass Panel
    ===================== */
 .glass-panel {
-  background: rgba(30, 41, 59, 0.7);
+  background: rgba(30, 41, 59, 0.8);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 

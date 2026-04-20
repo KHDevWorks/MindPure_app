@@ -1,8 +1,8 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, lazy, Suspense } from 'react';
 import SplashScreen  from './components/SplashScreen';
 import LandingView   from './components/LandingView';
 import QuizView      from './components/QuizView';
-import ResultView    from './components/ResultView';
+const ResultView    = lazy(() => import('./components/ResultView'));
 import { ALL_QUESTIONS } from './data/questions';
 import { calculateResults } from './utils/scoring';
 
@@ -62,11 +62,13 @@ export default function App() {
         />
       )}
       {view === 'result' && (
-        <ResultView
-          resultData={resultData}
-          mode={mode}
-          onBack={() => setView('landing')}
-        />
+        <Suspense fallback={<div className="flex-1 p-6 flex items-center justify-center text-slate-200">Loading report…</div>}>
+          <ResultView
+            resultData={resultData}
+            mode={mode}
+            onBack={() => setView('landing')}
+          />
+        </Suspense>
       )}
     </div>
   );
