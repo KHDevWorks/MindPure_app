@@ -1,0 +1,170 @@
+/* =====================
+   Base
+   ===================== */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #f8fafc;
+  font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+  overflow-x: hidden;
+}
+
+/* =====================
+   Splash Screen
+   ===================== */
+.splash-container {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease-out;
+}
+
+.stars-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.stage {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ambient {
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(0,229,255,0.07) 0%, transparent 65%);
+  border-radius: 50%;
+  animation: pulse-ambient 4s ease-in-out infinite;
+}
+
+@keyframes pulse-ambient {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.1); opacity: 0.6; }
+}
+
+.logo-wrap {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  opacity: 0;
+  animation: fade-in 1s ease 0.4s forwards;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.wordmark {
+  margin-top: 36px;
+  text-align: center;
+  opacity: 0;
+  animation: fade-up 0.9s ease 0.9s forwards;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.name {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 32px;
+  letter-spacing: 0.22em;
+  color: #fff;
+}
+.name span { color: #00e5ff; }
+
+.rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00e5ff, transparent);
+  margin: 14px 0;
+}
+
+.sub {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.55em;
+  color: #00e5ff;
+  text-transform: uppercase;
+}
+
+/* Orbital ring animations */
+@keyframes spin-cw  { from { transform: rotate(0deg);   } to { transform: rotate(360deg);  } }
+@keyframes spin-ccw { from { transform: rotate(0deg);   } to { transform: rotate(-360deg); } }
+
+.r1 { animation: spin-cw  9s  linear infinite; transform-origin: 110px 110px; }
+.r2 { animation: spin-ccw 6s  linear infinite; transform-origin: 110px 110px; }
+.r3 { animation: spin-cw  14s linear infinite; transform-origin: 110px 110px; }
+
+/* =====================
+   App
+   ===================== */
+.app-content {
+  min-height: 100vh;
+  background-color: #0f172a;
+  animation: app-fade-in 1.5s ease;
+}
+
+@keyframes app-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* =====================
+   Glass Panel
+   ===================== */
+.glass-panel {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(0, 229, 255, 0.5);
+  background: rgba(30, 41, 59, 0.85);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* =====================
+   Progress Bar
+   ===================== */
+.progress-fill {
+  transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* =====================
+   Answer Button Shimmer
+   ===================== */
+.btn-option {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-option::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-option:hover::after {
+  transform: translateX(100%);
+}
